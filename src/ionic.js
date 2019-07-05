@@ -1,4 +1,12 @@
-// import Vue from "vue";
+import jp from 'jsonpath';
+
+function jpv(state, model, value) {
+  try {
+    jp.value(state, model, value);
+  } catch (err) {
+    return (state[model] = value);
+  }
+}
 
 const ionic = {
   alert: document.querySelector("ion-alert-controller"),
@@ -92,7 +100,8 @@ ionic.install = function(vue) {
 
       el[target] = binding.value;
       el.addEventListener("ionChange", function(e) {
-        vnode.context[binding.expression] = e.detail[target];
+        // vnode.context[binding.expression] = e.detail[target];
+        jpv(vnode.context, binding.expression, e.detail[target]);
       });
     }
   });

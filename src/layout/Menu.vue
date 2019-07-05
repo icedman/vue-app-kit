@@ -57,7 +57,7 @@
 
           <ion-item-group v-for="(item, idx) in menuItems" :key="idx">
             <ion-item button @click="menuItemClicked(item)">
-              <ion-icon slot="start" :name="item.icon"></ion-icon>
+              <ion-icon v-if="item.icon" slot="start" :name="item.icon"></ion-icon>
               <ion-label>
                 {{ item.title }}
               </ion-label>

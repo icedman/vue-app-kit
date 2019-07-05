@@ -1,7 +1,7 @@
 <template>
   <ion-toolbar class="header">
     <ion-buttons slot="start">
-      <ion-menu-toggle v-if="$store.state.ui.showMenu">
+      <ion-menu-toggle v-if="$store.state.ui.showMenu && !$store.state.ui.showBackButton">
         <ion-button>
           <ion-icon slot="icon-only" name="menu"></ion-icon>
         </ion-button>

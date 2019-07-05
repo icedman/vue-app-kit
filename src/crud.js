@@ -10,7 +10,7 @@ class CrudModel {
   findOne(id) {
     return $http({
       method: "get",
-      url: $config.app.server.url + `/${this.model}/${id}`,
+      url: $config.api.url + `/${this.model}/${id}`,
       cancelToken: this.signal.token
     })
       .then(res => {
@@ -25,7 +25,7 @@ class CrudModel {
   save(doc) {
     let method = doc._id ? "put" : "post";
     let url =
-      $config.app.server.url + `/${this.model}/` + (doc._id ? doc._id : "");
+      $config.api.url + `/${this.model}/` + (doc._id ? doc._id : "");
     return $http({
       method: method,
       url: url,
@@ -47,7 +47,7 @@ class CrudModel {
   erase(id) {
     return $http({
       method: "delete",
-      url: $config.app.server.url + `/${this.model}/${id}`,
+      url: $config.api.url + `/${this.model}/${id}`,
       cancelToken: this.signal.token
     })
       .then(res => {
@@ -83,7 +83,7 @@ class CrudModel {
     console.log(query);
 
     return $http
-      .get($config.app.server.url + `/${this.model}`, {
+      .get($config.api.url + `/${this.model}`, {
         params: query,
         cancelToken: this.signal.token
       })
