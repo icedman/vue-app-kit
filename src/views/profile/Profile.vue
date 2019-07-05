@@ -22,6 +22,13 @@
         <ion-item v-if="$config.auth.facebook && !isFacebookLinked" button @click="fbLink">
           Link to Facebook account
         </ion-item>
+
+        <component :is="$config.profile.component" v-model="meta" :key="meta.name"/>
+
+        <ion-item>
+          {{meta}}
+        </ion-item>
+
       </ion-list>
     </ion-content>
   </div>
@@ -30,6 +37,7 @@
 export default {
   data() {
     return {
+      meta: { ... this.$config.profile.meta },
       toastTimeout: 2000
     };
   },
@@ -114,35 +122,39 @@ export default {
 
     fbLink() {
       this._socialLink(new this.$firebase.auth.FacebookAuthProvider());
+    },
+
+    save() {
+      this.$crud('auth-firebase/me').save({...this.meta, _id:'*'});
+    },
+
+    async fetchMe() {
+      let res = await this.$crud('auth-firebase/me').find();
+      if (res && res.data) {
+        Object.keys(res.data.meta).forEach(k=>{
+          this.$set(this.meta, k, res.data.meta[k]);
+        })
+        console.log(this.meta);
+      }
     }
   },
 
   mounted() {
     this.$store.commit("ui/showBackButton", true);
+    this.$store.commit('ui/setActions', [{
+      title: 'Save',
+      emit: 'action-save'
+    }]);
+    this.$root.$on('action-save', this.save);
+
     this.checkRedirect();
+    this.fetchMe();
   },
 
   beforeDestroy() {
+    this.$store.commit('ui/setActions', []);
+    this.$root.$off('action-save', this.save);
     this.$store.commit("ui/showBackButton", false);
   }
 };
 </script>
-
-<!--
-<style lang="scss">
-.login-content {
-  --background: #f0f0f0;
-  --color: #505050;
-}
-.center-content {
-  text-align: center;
-}
-
-.login-box ion-list,
-.login-box ion-item {
-  background: transparent;
-  --background: transparent;
-}
-</style>
--->
-

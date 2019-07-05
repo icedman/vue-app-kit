@@ -15,6 +15,15 @@ const config = {
 
   io: {
     url: "http://localhost:8000"
+  },
+
+  theme: {
+    logo: 'img/ml-128.png'
+  },
+
+  profile: {
+    component: 'div',
+    meta: {}
   }
 };
 

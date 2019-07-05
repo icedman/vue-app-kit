@@ -1,5 +1,6 @@
 <template>
   <div class="ion-page sidebar">
+    <ion-menu-toggle auto-hide="false">
     <ion-header no-border>
       <!-- <ion-toolbar> -->
       <ion-title>
@@ -42,6 +43,7 @@
           Login
         </ion-label>
       </ion-item>
+
       <!-- </ion-toolbar> -->
     </ion-header>
 
@@ -52,7 +54,6 @@
           Navigate
         </ion-list-header>
         -->
-        <ion-menu-toggle auto-hide="false">
           <!-- dynamic menu items -->
 
           <ion-item-group v-for="(item, idx) in menuItems" :key="idx">
@@ -70,9 +71,9 @@
               Logout
             </ion-label>
           </ion-item>
-        </ion-menu-toggle>
       </ion-list>
     </ion-content>
+  </ion-menu-toggle>
   </div>
 </template>
 <script>

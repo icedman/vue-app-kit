@@ -4,7 +4,8 @@
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div text-center>
-            <img src="http://placehold.it/300x200" />
+            <!-- <img src="http://placehold.it/300x200" /> -->
+            <img :src="`${$config.theme.logo}`" width="300px"/>
           </div>
 
           <div v-if="$config.auth.local">
@@ -104,7 +105,7 @@
             </div>
 
             <div padding>
-              <ion-button fill="clear" @click.prevent="$router.go(-1)">Back</ion-button>
+              <ion-button fill="clear" @click.prevent="$router.go(-1)">Continue as guest</ion-button>
             </div>
           </div>
         </ion-col>
