@@ -1,6 +1,6 @@
 <template>
-  <div class="ion-page sidebar">
     <ion-menu-toggle auto-hide="false">
+  <div class="ion-page sidebar">
     <ion-header no-border>
       <!-- <ion-toolbar> -->
       <ion-title>
@@ -73,8 +73,8 @@
           </ion-item>
       </ion-list>
     </ion-content>
-  </ion-menu-toggle>
   </div>
+    </ion-menu-toggle>
 </template>
 <script>
 export default {

@@ -1,8 +1,9 @@
 import config from "./config.js";
-import util from "./util.js";
+import utility from "./util.js";
 import ionic from "./ionic.js";
 import crud from "./crud.js";
 import cache from "./cache.js";
+import storage from "./storage.js";
 import firebase from "./firebase.js";
 import App from "./App";
 
@@ -17,9 +18,11 @@ export const $ionic = ionic;
 export const $crud = crud;
 export const $cache = cache;
 export const $firebase = firebase;
+export const $utility = utility;
+export const $storage = storage;
 export const Layout = App;
 
-const all = [$ionic, $crud, $cache, $firebase];
+const all = [$ionic, $crud, $cache, $firebase, $utility, $storage];
 
 export default {
   install(vue, options = {}) {

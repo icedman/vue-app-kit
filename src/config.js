@@ -1,4 +1,8 @@
 const config = {
+  app: {
+    id: "simple-app"
+  },
+
   firebase: {
     // your firebase config
   },

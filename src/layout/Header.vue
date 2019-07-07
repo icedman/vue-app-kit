@@ -17,7 +17,7 @@
     <ion-buttons slot="end">
       <ion-button
         v-for="(btn, idx) in $store.state.ui.actions"
-        @click="actionItemClicked(btn)"
+        @click="actionItemClicked(btn, $event)"
         :key="idx"
       >
         <ion-label v-if="btn.title">{{ btn.title }}</ion-label>
@@ -29,12 +29,12 @@
 <script>
 export default {
   methods: {
-    actionItemClicked(item) {
+    actionItemClicked(item, event) {
       if (item.route) {
         this.$router.push(item.route);
       }
       if (item.emit) {
-        this.$root.$emit(item.emit, item);
+        this.$root.$emit(item.emit, { ...item, event } );
       }
     }
   },
