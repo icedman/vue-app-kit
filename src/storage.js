@@ -2,12 +2,14 @@ import $http from "axios";
 import $config from "./config";
 import qs from "qs";
 
-const entryPoint = $config.api.url + "/storage";
+function entryPoint() {
+  return $config.api.url + "/storage";
+}
 
 const provider = {
   list: directory => {
     return $http
-      .get(entryPoint, {
+      .get(entryPoint(), {
         params: {
           path: directory
         }
@@ -21,7 +23,7 @@ const provider = {
   },
 
   download: path => {
-    window.open(entryPoint + "?path=" + path);
+    window.open(entryPoint() + "?path=" + path);
   },
 
   upload: (file, params) => {
@@ -30,7 +32,7 @@ const provider = {
 
     return $http({
       method: "post",
-      url: entryPoint,
+      url: entryPoint(),
       data: formData,
       params: {
         path: params.path
@@ -58,7 +60,7 @@ const provider = {
   mkdir: params => {
     return $http({
       method: "post",
-      url: entryPoint,
+      url: entryPoint(),
       data: {
         type: "create",
         path: params.path
@@ -77,7 +79,7 @@ const provider = {
     let p = qs.stringify(params);
     return $http({
       method: "delete",
-      url: entryPoint + "?" + p
+      url: entryPoint() + "?" + p
     })
       .then(res => {
         return Promise.resolve(res);

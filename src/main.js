@@ -30,7 +30,7 @@ export default {
       options.config = Object.assign(config, options.config);
     }
 
-    vue.prototype.$config = config;
+    vue.prototype.$config = options.config;
 
     let components = options.components || all;
     components.forEach(comp => {
