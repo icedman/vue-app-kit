@@ -75,7 +75,6 @@ const provider = {
   remove: params => {
     // { files: [ { path: 'xxx' }] }
     let p = qs.stringify(params);
-    console.log(p);
     return $http({
       method: "delete",
       url: entryPoint + "?" + p
