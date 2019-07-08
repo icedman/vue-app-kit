@@ -4,6 +4,7 @@ import ionic from "./ionic.js";
 import crud from "./crud.js";
 import cache from "./cache.js";
 import storage from "./storage.js";
+import blocks from "./blocks/Blocks";
 import firebase from "./firebase.js";
 import App from "./App";
 
@@ -20,6 +21,7 @@ export const $cache = cache;
 export const $firebase = firebase;
 export const $utility = utility;
 export const $storage = storage;
+export const Blocks = blocks;
 export const Layout = App;
 
 const all = [$ionic, $crud, $cache, $firebase, $utility, $storage];
