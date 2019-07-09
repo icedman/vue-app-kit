@@ -25,10 +25,6 @@
 
         <component :is="$config.profile.component" v-model="meta" :key="meta.name"/>
 
-        <ion-item>
-          {{meta}}
-        </ion-item>
-
       </ion-list>
     </ion-content>
   </div>
@@ -124,8 +120,15 @@ export default {
       this._socialLink(new this.$firebase.auth.FacebookAuthProvider());
     },
 
-    save() {
-      this.$crud('auth-firebase/me').save({...this.meta, _id:'*'});
+    async save() {
+      await this.$crud('auth-firebase/me').save({...this.meta, _id:'*'})
+      this.$ionic.showToast("Profile updated", {
+          duration: this.toastTimeout
+        });
+
+      let user = this.$store.state.user.user;
+      user.meta = this.meta;
+      this.$store.commit('user/setUser', user);
     },
 
     async fetchMe() {
