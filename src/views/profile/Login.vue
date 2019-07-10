@@ -5,7 +5,7 @@
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div text-center>
             <!-- <img src="http://placehold.it/300x200" /> -->
-            <img :src="`${$config.theme.logo}`" width="300px"/>
+            <img :src="`${$config.theme.logo}`" width="380px"/>
           </div>
 
           <div v-if="$config.auth.local">

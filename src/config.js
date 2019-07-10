@@ -22,7 +22,7 @@ const config = {
   },
 
   theme: {
-    logo: 'img/ml-128.png'
+    logo: 'img/logo.png'
   },
 
   profile: {

@@ -1,5 +1,3 @@
-import Login from "../views/profile/Login.vue";
-
 export default [
   {
     path: "/profile",
@@ -13,7 +11,8 @@ export default [
   {
     path: "/profile/login",
     name: "login",
-    component: Login,
+    component: () =>
+      import(/* webpackChunkName: "profile" */ "../views/profile/Login.vue"),
     meta: {
       layout: "Full"
     }
