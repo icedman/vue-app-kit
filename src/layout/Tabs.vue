@@ -14,32 +14,20 @@
       <header-module></header-module>
     </ion-header>
 
-      <ion-tab-bar slot="bottom">
-          <ion-tab-button
-            :tab="item.name"
-            v-for="(item, idx) in tabItems"
-            :key="idx"
-            @click="tabItemClicked(item)"
-          >
-            <ion-label>
-              {{ item.title }}
-            </ion-label>
-            <ion-icon :name="item.icon || 'help-circle-outline'"></ion-icon>
-            <ion-badge v-if="item.badge > 0">{{ item.badge }}</ion-badge>
-          </ion-tab-button>
-
-          <ion-tab-button
-            v-if="!tabItems || !tabItems.length"
-            tab="cart"
-            @click="tabItemClicked({ route: '/cart' })"
-          >
-            <ion-label>
-              Cart
-            </ion-label>
-            <ion-icon name="basket"></ion-icon>
-            <ion-badge v-if="basketCount > 0">{{ basketCount }}</ion-badge>
-          </ion-tab-button>
-        </ion-tab-bar>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button
+        :tab="item.name"
+        v-for="(item, idx) in tabItems"
+        :key="idx"
+        @click="tabItemClicked(item)"
+      >
+        <ion-label>
+          {{ item.title }}
+        </ion-label>
+        <ion-icon :name="item.icon || 'help-circle-outline'"></ion-icon>
+        <ion-badge v-if="item.badge > 0">{{ item.badge }}</ion-badge>
+      </ion-tab-button>
+    </ion-tab-bar>
 
     <div class="-ion-page" main>
       <ion-tabs>
@@ -49,7 +37,6 @@
             v-for="(item, idx) in tabItems"
             :key="idx"
           ></ion-tab>
-          <ion-tab v-if="!tabItems || !tabItems.length" tab="cart"></ion-tab>
         </div>
       </ion-tabs>
     </div>
