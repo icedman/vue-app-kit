@@ -1,20 +1,31 @@
 <template>
   <ion-app id="app">
-
-    <ion-content>
-      <router-view />
-      <div style="height: 120px"><br/></div>
-    </ion-content>
-
     <ion-menu v-if="$store.state.ui.showMenu" name="menu" type="overlay">
       <menu-module></menu-module>
     </ion-menu>
 
-    <ion-header no-border>
-      <header-module></header-module>
-    </ion-header>
+    <div class="ion-page" main>
+      <ion-tabs>
+        <ion-header no-border>
+          <header-module></header-module>
+        </ion-header>
 
-      <ion-tab-bar slot="bottom">
+        <ion-content>
+          <router-view />
+          <div style="height: 120px"><br/></div>
+        </ion-content>
+
+        <div style="display:none">
+          <ion-tab
+            :tab="item.name"
+            v-for="(item, idx) in tabItems"
+            :key="idx"
+          ></ion-tab>
+          <ion-tab v-if="!tabItems || !tabItems.length" tab="cart"></ion-tab>
+        </div>
+
+        <!-- custom tab items -->
+        <ion-tab-bar slot="bottom">
           <ion-tab-button
             :tab="item.name"
             v-for="(item, idx) in tabItems"
@@ -40,20 +51,8 @@
             <ion-badge v-if="basketCount > 0">{{ basketCount }}</ion-badge>
           </ion-tab-button>
         </ion-tab-bar>
-
-    <div class="-ion-page" main>
-      <ion-tabs>
-        <div style="display:none">
-          <ion-tab
-            :tab="item.name"
-            v-for="(item, idx) in tabItems"
-            :key="idx"
-          ></ion-tab>
-          <ion-tab v-if="!tabItems || !tabItems.length" tab="cart"></ion-tab>
-        </div>
       </ion-tabs>
     </div>
-
   </ion-app>
 </template>
 
