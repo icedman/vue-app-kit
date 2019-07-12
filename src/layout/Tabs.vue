@@ -12,6 +12,7 @@
 
         <ion-content>
           <router-view />
+          <div style="height: 120px"><br/></div>
         </ion-content>
 
         <div style="display:none">

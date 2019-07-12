@@ -1,11 +1,11 @@
 <template>
-    <ion-menu-toggle auto-hide="false">
+  <ion-menu-toggle auto-hide="false">
   <div class="ion-page sidebar">
     <ion-header no-border>
       <!-- <ion-toolbar> -->
-      <ion-title>
-        <!-- <div id="site-logo"></div> -->
-      </ion-title>
+      <ion-item>
+        <div id="site-logo"></div>
+      </ion-item>
 
       <ion-item
         v-if="$store.state.user.user.email"
@@ -15,14 +15,14 @@
         <div style="min-height:120px;">
           <div style="margin-top:20px">
             <ion-row>
-              <!--
+
                 <ion-col size="4">
-                  <ion-avatar>
-                    <img :src="$store.state.user.user.photoUrl" />
+                  <ion-avatar v-if="avatar">
+                    <img :src="avatar"/>
                   </ion-avatar>
                 </ion-col>
-              -->
-              <ion-col size="12" style="padding:12px">
+
+              <ion-col size="8" style="padding:12px">
                 <p style="margin:4px">
                   {{ $store.state.user.user.name }}<br />
                   {{ username }}
@@ -38,7 +38,7 @@
         button
         @click="$router.push('/profile/login')"
       >
-        <ion-icon slot="start" name="medal"></ion-icon>
+        <ion-icon slot="start" name="person"></ion-icon>
         <ion-label>
           Login
         </ion-label>
@@ -74,7 +74,7 @@
       </ion-list>
     </ion-content>
   </div>
-    </ion-menu-toggle>
+  </ion-menu-toggle>
 </template>
 <script>
 export default {
@@ -83,6 +83,13 @@ export default {
   },
 
   computed: {
+    avatar() {
+      if (!this.$store.state.user.user || !this.$store.state.user.user.email) {
+        return null;
+      }
+      let name = (this.$store.state.user.user.email).replace('@','-');
+      return `https://api.adorable.io/avatars/285/${name}@adorable.io.png`;
+    },
     menuItems() {
       return this.$store.state.ui.menu || [];
     },

@@ -5,7 +5,8 @@ export default [
     component: () =>
       import(/* webpackChunkName: "profile" */ "../views/profile/Profile.vue"),
     meta: {
-      layout: "Split"
+      layout: "Split",
+      requiresAuth: true
     }
   },
   {

@@ -89,8 +89,8 @@ class SimpleCache {
       return Promise.resolve(this.cache[key].data);
     }
     return requestFunc().then(res => {
-      this.put(key, res.data, opts);
-      return Promise.resolve(res.data);
+      this.put(key, res, opts);
+      return Promise.resolve(res);
     });
   }
 }
