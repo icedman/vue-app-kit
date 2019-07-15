@@ -1,9 +1,11 @@
 <template>
+  <div>
   <ion-slides ref="slides">
     <ion-slide v-for="(image, idx) in images" :key="idx">
       <img :src="$config.api.url + image.url"/>
     </ion-slide>
   </ion-slides>
+  </div>
 </template>
 <script>
   export default {
