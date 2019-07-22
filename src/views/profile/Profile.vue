@@ -23,6 +23,15 @@
           Link to Facebook account
         </ion-item>
 
+      <!--
+        <ion-item v-if="$config.auth.google && isGoogleLinked" button @click="ggUnLink">
+          Unlink from Google+ account
+        </ion-item>
+        <ion-item v-if="$config.auth.facebook && isFacebookLinked" button @click="fbUnLink">
+          Unlink from Facebook account
+        </ion-item>
+      -->
+
         <component :is="$config.profile.component" v-model="meta" :key="meta.name"/>
 
       </ion-list>
@@ -42,7 +51,7 @@ export default {
     isGoogleLinked() {
       try {
         return (
-          this.$store.state.user.user.meta.firebase.identities["google.com"]
+          this.$store.state.user.user.meta.identities["google-com"]
             .length > 0
         );
       } catch (err) {
@@ -53,7 +62,7 @@ export default {
     isFacebookLinked() {
       try {
         return (
-          this.$store.state.user.user.meta.firebase.identities["facebook.com"]
+          this.$store.state.user.user.meta.identities["facebook-com"]
             .length > 0
         );
       } catch (err) {
