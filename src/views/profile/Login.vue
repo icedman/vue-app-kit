@@ -139,7 +139,11 @@ export default {
           this.$http.defaults.headers.common["Authorization"] =
             "Bearer " + res.data.jwt;
           console.log("JWT:" + res.data.jwt);
-          this.onLogin();
+          setTimeout(() => {
+            this.onLogin();
+          },
+            0
+          );
         })
         .catch(error => {
           if (!error) {

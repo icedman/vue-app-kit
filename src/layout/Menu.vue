@@ -102,6 +102,7 @@ export default {
     logout() {
       this.$firebase.auth().signOut();
       this.$store.commit("user/setUser", null);
+      this.$router.replace('/');
     },
 
     menuItemClicked(item) {
