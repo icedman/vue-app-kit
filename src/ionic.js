@@ -1,11 +1,11 @@
-import jp from 'jsonpath';
+// import jp from 'jsonpath';
 
 function jpv(state, model, value) {
-  try {
-    jp.value(state, model, value);
-  } catch (err) {
+  // try {
+    // jp.value(state, model, value);
+  // } catch (err) {
     return (state[model] = value);
-  }
+  // }
 }
 
 const ionic = {
