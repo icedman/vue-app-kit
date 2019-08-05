@@ -3,12 +3,11 @@ import "firebase/auth";
 
 let _vue = {};
 let _config = {};
-const _firebase = {
-  firebase: firebase
-};
+let _http = {};
+let _store = {};
 
 async function whoAmI() {
-  var me = await _vue.prototype.$http
+  var me = await _http
     .get(_config.api.url + "/users/me")
     .catch(() => {
       return Promise.resolve({
@@ -16,12 +15,19 @@ async function whoAmI() {
       });
     });
 
-  _vue.prototype.$store.commit("user/setUser", me.data);
+  _store.commit("user/setUser", me.data);
   return me.data;
 }
 
+const _firebase = {
+  firebase: firebase,
+  whoAmI: whoAmI
+};
+
 _firebase.install = function(vue, options) {
   _config = options.config;
+  _http = options.$http;
+  _store = options.$store;
   firebase.initializeApp(_config.firebase);
   vue.prototype.$firebase = firebase;
   vue.prototype.$whoAmI = whoAmI;

@@ -30,10 +30,6 @@ import marked from "marked";
         }
         return null;
       }
-    },
-
-    components: {
-      'carousel': () => import('./elements/Carousel.vue')
     }
   }
 </script>

@@ -114,7 +114,7 @@
   </div>
 </template>
 <script>
-import { firebase_mixin } from "../../firebase";
+import firebase from '../../firebase';
 
 export default {
   data() {
@@ -124,6 +124,13 @@ export default {
       password: "",
       toastTimeout: 2000
     };
+  },
+
+  created() {
+    if (!this.$firebase) {
+      this.$firebase = firebase.firebase;
+      this.$whoAmI = firebase.whoAmI.bind(this);
+    }
   },
 
   methods: {

@@ -1,6 +1,7 @@
 import cache from "./cachedState";
 
 let state = {
+  firebase: null,
   token: null,
   user: {
     name: null,

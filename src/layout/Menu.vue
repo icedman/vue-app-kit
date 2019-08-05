@@ -77,6 +77,7 @@
   </ion-menu-toggle>
 </template>
 <script>
+  import Vue from 'vue';
 export default {
   data() {
     return {};
@@ -100,7 +101,11 @@ export default {
 
   methods: {
     logout() {
-      this.$firebase.auth().signOut();
+      let firebase = this.$firebase || Vue.prototype.$firebase;
+      if (firebase) {
+        firebase.auth().signOut();
+      }
+      
       this.$store.commit("user/setUser", null);
       this.$router.replace('/');
     },
