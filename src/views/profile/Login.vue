@@ -136,7 +136,8 @@ export default {
   methods: {
     async checkRedirect() {
       /* verify token */
-      await this.$ionic.showLoading("Please wait...", "cresent");
+      this.$ionic.showLoading("Please wait...", "cresent");
+      
       return this.$firebase
         .auth()
         .getRedirectResult()
@@ -232,6 +233,9 @@ export default {
     },
 
     async _socialLogin(provider) {
+
+      this.$ionic.showLoading("Please wait...", "cresent");
+
       return this.$firebase
         .auth()
         .setPersistence(this.$firebase.auth.Auth.Persistence.LOCAL)

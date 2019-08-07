@@ -1,11 +1,59 @@
-// import jp from 'jsonpath';
+//import jp from 'jsonpath';
+
+import update from 'immutability-helper';
+import merge from 'merge';
+
+function pathToUpdateObject(path, value) {
+  let p = path.split('.');
+  let obj = {};
+  let node = obj;
+  p.forEach((n, idx) => {
+    node[n] = {};
+    if (idx === p.length - 1) {
+      node[n] = { $set: value };
+    }
+    node = node[n];
+  });
+  return obj;
+}
+
+function pathToValue(state, path) {
+  let p = path.split('.');
+  let node = state;
+  
+  for(let i = 0; i<p.length; i++) {
+    let n = p[i];
+    let v = node[n];
+    if (i == p.length - 1) {
+      return v;
+    }
+    if (typeof(v) !== 'object') {
+      break;
+    }
+    node = v;
+  };
+}
+
+function mutateState(state, params) {
+  let ih = {}; // immutability-helper params
+  Object.keys(params).forEach(k => {
+    ih = merge.recursive(ih, pathToUpdateObject(k, params[k]));
+    // ih = { ...ih, ...pathToUpdateObject(k, params[k]) };
+  });
+
+  return update(state, ih);
+}
 
 function jpv(state, model, value) {
-  // try {
+  try {
     // jp.value(state, model, value);
-  // } catch (err) {
+    let newState = {};
+    newState[model] = value;
+    Object.assign(state, mutateState(state, newState));
+  } catch (err) {
+    console.log(err);
     return (state[model] = value);
-  // }
+  }
 }
 
 const ionic = {
