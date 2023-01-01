@@ -17,6 +17,6 @@
 	"devDependencies": {
 		"node-sass": "^4.12.0",
 		"sass": "^1.22.3",
-		"sass-loader": "^7.1.0"
+		"sass-loader": "^13.2.0"
 	}
 }
